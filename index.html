@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>健康饮食内容传播与用户互动分析</title>
+  <style>
+    :root {
+      --ink: #162033;
+      --muted: #5d687a;
+      --line: #dfe6ef;
+      --soft: #f5f7fb;
+      --brand: #2f6fed;
+      --green: #36a269;
+      --orange: #f2a541;
+      --red: #d95d59;
+      --panel: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #ffffff;
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.94);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 78px 0 52px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(47, 111, 237, 0.12), rgba(54, 162, 105, 0.10)),
+        linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 44px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 20px 0 28px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--brand);
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--brand);
+    }
+
+    .hero-visual {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(34, 47, 62, 0.12);
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    section {
+      padding: 54px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .section-intro {
+      max-width: 850px;
+      margin: 0 0 26px;
+      color: var(--muted);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .metric {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 28px;
+      color: var(--ink);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fff;
+      min-height: 160px;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .dashboard-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .dashboard-shot {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .dashboard-shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .insights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .insight {
+      border-left: 4px solid var(--brand);
+      background: var(--soft);
+      border-radius: 6px;
+      padding: 18px;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .resource {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 34px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .metrics,
+      .timeline,
+      .insights,
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand">健康饮食数据分析项目</div>
+      <div class="nav-links">
+        <a href="#overview">项目概述</a>
+        <a href="#process">流程</a>
+        <a href="#dashboard">仪表板</a>
+        <a href="#insights">结论</a>
+        <a href="#resources">材料</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="page hero-grid">
+        <div>
+          <div class="eyebrow">Xiaohongshu Healthy Diet Analysis</div>
+          <h1>健康饮食内容传播与用户互动分析</h1>
+          <p class="lead">
+            本项目围绕小红书平台健康饮食相关内容，完成自动化数据采集、Excel 清洗处理、FineBI 可视化分析与网页成果展示，分析不同健康饮食内容类型的传播表现和用户互动偏好。
+          </p>
+          <div class="actions">
+            <a class="button" href="https://demo.fanruan.com/webroot/decision/v5/design/report/b1e7b9b6b5eb48278df32ff214197adc/view" target="_blank" rel="noreferrer">查看 FineBI 仪表板</a>
+            <a class="button secondary" href="assets/finebi-dashboard.pdf" target="_blank" rel="noreferrer">查看仪表板 PDF</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="assets/dashboard.png" alt="FineBI 仪表板截图" />
+        </div>
+      </div>
+    </div>
+
+    <section id="overview">
+      <div class="page">
+        <h2>项目概述</h2>
+        <p class="section-intro">
+          健康饮食内容在社交平台中具有较高的传播价值。用户在浏览相关内容时，通常关注减脂、低卡、控糖、高蛋白、早餐搭配和饮食打卡等主题。本项目通过结构化数据分析，观察哪些内容更容易获得点赞、收藏和评论，并总结健康饮食内容的传播特征。
+        </p>
+        <div class="metrics">
+          <div class="metric"><span>有效数据量</span><strong>220</strong></div>
+          <div class="metric"><span>来源关键词</span><strong>10</strong></div>
+          <div class="metric"><span>核心图表</span><strong>6</strong></div>
+          <div class="metric"><span>分析链路</span><strong>5步</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="page">
+        <h2>项目流程</h2>
+        <p class="section-intro">
+          项目按照“自动化采集 - 数据清洗 - 统计分析 - 可视化展示 - 网页发布”的流程推进，保证数据结果可追溯、分析过程清晰、成果可长期访问。
+        </p>
+        <div class="timeline">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>数据采集</h3>
+            <p>使用自动化采集程序，围绕健康饮食、减脂餐、低卡饮食等关键词整理原始数据。</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Excel 清洗</h3>
+            <p>完成去重、格式统一、互动量计算、内容类型和情感倾向标注。</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>统计汇总</h3>
+            <p>从内容类型、关键词、时间段、地域和互动量等维度生成统计结果。</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>FineBI 分析</h3>
+            <p>构建交互式仪表板，展示内容分布、互动表现、情感占比和 Top 笔记。</p>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <h3>网页发布</h3>
+            <p>将项目背景、数据流程、仪表板和分析结论整合到 GitHub Pages。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <div class="page dashboard-block">
+        <div>
+          <h2>FineBI 仪表板展示</h2>
+          <p class="section-intro">
+            仪表板包含内容类型数量分布、不同内容类型平均互动量、情感倾向占比、发布时间段分布、互动量 Top10 笔记和发布地域分布等组件，用于快速识别健康饮食内容的传播表现。
+          </p>
+        </div>
+        <div class="dashboard-shot">
+          <img src="assets/dashboard.png" alt="健康饮食内容传播与用户互动分析仪表板" />
+        </div>
+        <div class="actions">
+          <a class="button" href="https://demo.fanruan.com/webroot/decision/v5/design/report/b1e7b9b6b5eb48278df32ff214197adc/view" target="_blank" rel="noreferrer">打开 FineBI 公开链接</a>
+          <a class="button secondary" href="assets/finebi-dashboard.pdf" target="_blank" rel="noreferrer">下载/查看仪表板 PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="insights">
+      <div class="page">
+        <h2>核心分析结论</h2>
+        <div class="insights">
+          <div class="insight">
+            <h3>减脂和低卡内容更受关注</h3>
+            <p>减脂餐、低卡饮食和健康早餐是健康饮食内容中的主要类型，说明用户更关注可执行的日常饮食方案。</p>
+          </div>
+          <div class="insight">
+            <h3>实用型标题更容易互动</h3>
+            <p>标题中包含“一周”“低卡”“减脂”“高蛋白”“合集”等表达时，内容更容易获得点赞和收藏。</p>
+          </div>
+          <div class="insight">
+            <h3>整体情绪偏积极</h3>
+            <p>健康饮食内容以正向和中性表达为主，用户讨论重点集中在经验分享、饮食记录和生活方式改善。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="page">
+        <h2>项目材料</h2>
+        <p class="section-intro">
+          项目保留了自动化采集工程、原始数据、处理后数据、FineBI 仪表板和网页源文件，便于复查与长期展示。
+        </p>
+        <div class="resource-grid">
+          <div class="resource">
+            <h3>原始数据</h3>
+            <p class="tagline">自动化采集后形成的结构化原始数据。</p>
+            <a href="assets/raw-data.xlsx">查看 Excel 文件</a>
+          </div>
+          <div class="resource">
+            <h3>处理后数据</h3>
+            <p class="tagline">包含清洗、标注、互动量计算和统计字段。</p>
+            <a href="assets/processed-data.xlsx">查看 Excel 文件</a>
+          </div>
+          <div class="resource">
+            <h3>FineBI 仪表板</h3>
+            <p class="tagline">可视化分析结果与公开访问链接。</p>
+            <a href="https://demo.fanruan.com/webroot/decision/v5/design/report/b1e7b9b6b5eb48278df32ff214197adc/view" target="_blank" rel="noreferrer">打开在线仪表板</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © XX班-XX组 健康饮食内容传播与用户互动分析
+  </footer>
+</body>
+</html>
